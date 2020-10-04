@@ -104,10 +104,24 @@ In PythonScript, all operators are functions, and so are called with the same no
 
 ## Logic
 
+Logic in PythonScript is *all* done using ternary logic (& numbers) - "trits" with 3 states (hence the base-3 number system).
 
+### Equality
 
-## Tritwise Operators
+```PythonScript
+/== <left> <right> \\ returns true if <left> == <right>
+```
 
-**TODO**
+### Inequality
+
+[FIXME]: # (Might need to change based off how NOT is implemented)
+
+```PythonScript
+/!= <left> <right> \\ !(<left> == <right>) 
+```
+
+**//TODO:** Remaining operators
 
 [//]: https://hackaday.io/project/164907-ternary-computing-menagerie/log/162816-tritwise-operations-and-eating-crow (This might be a good reference)
+
+
