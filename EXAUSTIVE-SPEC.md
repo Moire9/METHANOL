@@ -54,6 +54,16 @@ A Preceding slash before an execution block indicates that you want to return a 
 //<function call> <args..< >> ]
 ```
 
+## Assignment
+
+assignment is a special function/operator that allows you to define symbols
+
+```PythonScript
+/= <identifier> <value>
+```
+
+as you can see, function definitions are just a special case of assignment
+
 ## Operators
 
 In PythonScript, all operators are functions, and so are called with the same notation as functions.
