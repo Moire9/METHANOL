@@ -25,9 +25,23 @@ The basic subunit of code in PythonScript, as it's a functional language.
 ### Declaration
 
 ```PythonScript
-/=!<function name>! [ <parameters...< >> [
+/=!<function name>! [ <args...< >> [
 *<inner code>*
 ;<function name>; <||> <if> <at top level> ;;
 ```
 
 ### Calling
+
+functions are called using reverse polish notation
+
+```PythonScript
+/<function name> <args...< >> ]
+```
+
+### Returning Values
+
+A Preceding slash before an execution block indicates that you want to return a value. Using this outside of functions should result in a syntax error.
+
+```PythonScript
+//<function call> <args..< >> ]
+```
