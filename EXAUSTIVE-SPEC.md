@@ -28,12 +28,12 @@ The basic scoping unit of PythonScript, opened with `[` and closed with `;;`
 
 ## Functions
 
-The basic subunit of code in PythonScript, as it's a functional language.
+The basic subunit of code in PythonScript, as it's a functional language. You can think of it as a special case of the jump
 
 ### Declaration
 
 ```PythonScript
-/=!<function name>! [ <args...< >> [
+/!<function label>! [ <args...< >> [
 *<inner code>*
 ;<function name>; <||> ;; \\ used to end most recent block
 ```
@@ -124,4 +124,51 @@ Logic in PythonScript is *all* done using ternary logic (& numbers) - "trits" wi
 
 [//]: https://hackaday.io/project/164907-ternary-computing-menagerie/log/162816-tritwise-operations-and-eating-crow (This might be a good reference)
 
+## Control Flow
 
+### if
+
+if is just a function an evaluates a condition and executes a code block if it's true. You can define similar functions yourself 
+
+```PythonScript
+/if <condition> [
+*<conditional statement if conditional is 2>*
+;; [
+*<conditional statement if conditional is 1>*
+;;
+```
+
+#### logical extension: named conditionals
+
+```PythonScript
+/=!myIf! [ if <condition> [
+*<conditional statement if conditional is 2>*
+;; [
+*<conditional statement if conditional is 1>*
+;;
+;myif;
+```
+
+### else
+
+```PythonScript
+/else <if conditional (named or otherwise)> [
+*<conditional statement if conditional is 0>*
+;;
+```
+
+## labels
+
+labels for parts of your program (to be used with jumps)
+
+```PythonScript
+/!<label name>
+```
+
+## jump
+
+Loops are for the weak. In PythonScript all looping is done with jump statements.
+
+```PythonScript
+!<destination label>
+```
