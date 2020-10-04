@@ -14,6 +14,8 @@ Values inside `<>` indicate values the user can manipulate as well as notation u
 
 PythonScript uses a base-3 number system. The symbols 3-9 are evaluated like any other symbols (meaning you can use them as definition names)
 
+**//TODO:** Negative numbers
+
 ```PythonScript
 210 \\ == decimal 21
 ```
