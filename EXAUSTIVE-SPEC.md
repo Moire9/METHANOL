@@ -27,7 +27,7 @@ The basic subunit of code in PythonScript, as it's a functional language.
 ```PythonScript
 /=!<function name>! [ <args...< >> [
 *<inner code>*
-;<function name>; <||> <if> <at top level> ;;
+;<function name>; <||> ;; \\ used to end most recent block
 ```
 
 ### Calling
