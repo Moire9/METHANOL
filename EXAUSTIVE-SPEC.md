@@ -10,6 +10,14 @@ Values inside `<>` indicate values the user can manipulate as well as notation u
 
 `*<purpose>*` indicates a region in which any instructions may be given
 
+## Number System
+
+PythonScript uses a base-3 number system. The symbols 3-9 are evaluated like any other symbols (meaning you can use them as definition names)
+
+```PythonScript
+210 \\ == decimal 21
+```
+
 ## Code Blocks
 
 The basic scoping unit of PythonScript, opened with `[` and closed with `;;`
@@ -83,3 +91,13 @@ In PythonScript, all operators are functions, and so are called with the same no
 ```PythonScript
 /xx <left> <right>
 ```
+
+## Logic
+
+
+
+## Tritwise Operators
+
+**TODO**
+
+[//]: https://hackaday.io/project/164907-ternary-computing-menagerie/log/162816-tritwise-operations-and-eating-crow (This might be a good reference)
