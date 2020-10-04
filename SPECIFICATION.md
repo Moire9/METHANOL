@@ -1,74 +1,176 @@
-This is an informal specification for PythonScript, a formal one will follow later. 
+# Complete Spec Organized By Operation
 
-##Rundown of basic features
-PythonScript is loosely based off of Python. PythonScript does not have classes, fields, or namespaces. Example program:
+Values inside `<>` indicate values the user can manipulate as well as notation used by this spec. This was chosen due to the heavy overloading of square brackets.
+
+`<identifier>...<<separator>>` indicates a variadic number of a parameter identified by `<identifier>` separated by the value in `<separator>`
+
+`<||>` OR
+
+`<if <condition>>` if `<condition>`
+
+`*<purpose>*` indicates a region in which any instructions may be given
+
+## Number System
+
+PythonScript uses a base-3 number system. The symbols 3-9 are evaluated like any other symbols (meaning you can use them as definition names)
+
+**//TODO:** Negative numbers
+
+```PythonScript
+210 \\ == decimal 21
 ```
-\\ Double backslash indicates a comment.
 
-/=!main! [ foo bar [ \\ Declare a new function "main" that accepts two variables, foo and bar. The [ indicates the beginning of variables and / the end. The ! creates a label, don't worry about that right now.
+## Code Blocks
 
-  /print "Hello, World!"]: \\ A slash indicates the beginning of a function execution. A colon indicates the end of an instruction
-  \\ Technically / is an operator that takes the function's name as the first argument, and the function's arguements as the following arguments.
+The basic scoping unit of PythonScript, opened with `[` and closed with `;;`
 
-;main; \\ The end of a code block is denoted with the block's name or label surrounded by semicolons. Leaving out the label will end the topmost code block.
+```PythonScript
+[ *<inner code>* ;;
+```
 
-/main 0 "h"]: \\ Execute the main function, passing parameters 0 and "h".
+## Functions
 
-\\ PythonScript has a few operators. Note that PythonScript uses polish notation for all operators, with a closing bracket to indicate the end of that function.
+The basic subunit of code in PythonScript, as it's a functional language. You can think of it as a special case of the jump
 
-/print /+ 22 21]]: \\ Add 22 and 21 and print them.
+### Declaration
 
-\\ PythonScript's operators are: + for addition, - for subtraction, x for multiplication, and \ for division. You may have noticed that x is used for multiplication.
-\\ Being an operator, x cannot be used in identifiers. You will have to find another alternative.
+```PythonScript
+/!<function label>! [ <args...< >> [
+*<inner code>*
+;<function name>; <||> ;; \\ used to end most recent block
+```
 
-/= eight 1]: \\ Assign 1 to the variable eight
+### Calling
 
-\\ PythonScript supports literal reassignment, making it an extremely flexible language. For example,
+functions are called using reverse polish notation
 
-/= 12 22]:
+```PythonScript
+/<function name> <args...< >> ]
+```
 
-\\ You may have also noticed that the assignment operator is also used to create functions.
+### Returning Values
 
-/print + 2 10]]: \\ This will print 22
+A Preceding slash before an execution block indicates that you want to return a value. Using this outside of functions should result in a syntax error.
 
-\\ I should also mention that PythonScript uses the ternary number & logic systems. Tritwise and logical operators can be applied to all objects with support for them.
-\\ Additionally, users can implement their own tritwise operators. Since no distinction is made between operators and functions, making one is quite simple.
-\\ Note that PythonScript won't stop you from implementing functions or variables that override keywords (such as / and [ and ]), however doing so is likely a bad idea.
+```PythonScript
+//<function call> <args..< >> ]
+```
 
-/=!$! [ one two [ \\ declare a function $ that returns the the sum of the two values halved.
+## Assignment
 
-	//\ /+ one two] 2]: \\ a preceding slash indicates that the value will be returned from the function. There are two slashes here since it is returning the output of a function.
-	\\ Note that in PythonScript since everything is technically a function, order of operations is ignored and evaluated left to right.
-;; \\ This has the same effect as ;$;
-\\ PythonScript has relatively few restrictions on what things can be named
-\\ Because of literal reassignment, you can even have variables or functions with spaces in their names (as long as they are wrapped with quotes)
+assignment is a special function/operator that allows you to define symbols
 
+```PythonScript
+/= <identifier> <value>
+```
 
-\\ Let's talk about control flow. Code blocks start with a [ and end with a ;[block name];
+as you can see, function definitions are just a special case of assignment
 
-/if 1 [ \\ if is just a function that takes two arguments, a boolean expression and a code block. optionally a label can be defined, as we will see below
-	/print "This will always execute"]:
+## Operators
+
+In PythonScript, all operators are functions, and so are called with the same notation as functions.
+
+### Required Operators
+
+#### Addition
+
+```PythonScript
+/+ <left> <right>
+```
+
+#### Subtraction
+
+```PythonScript
+/- <left> <right>
+```
+
+#### Multiplication
+
+```PythonScript
+/x <left> <right>
+```
+
+#### Division
+
+```PythonScript
+/\ <left> <right>
+```
+
+#### Exponentiation
+
+[//]: # (TODO: add "variadic" exponentiation operator to spec)
+
+```PythonScript
+/xx <left> <right>
+```
+
+## Logic
+
+Logic in PythonScript is *all* done using ternary logic (& numbers) - "trits" with 3 states (hence the base-3 number system).
+
+### Equality
+
+```PythonScript
+/== <left> <right> \\ returns true if <left> == <right>
+```
+
+### Inequality
+
+[FIXME]: # (Might need to change based off how NOT is implemented)
+
+```PythonScript
+/!= <left> <right> \\ !(<left> == <right>) 
+```
+
+**//TODO:** Remaining operators
+
+[//]: https://hackaday.io/project/164907-ternary-computing-menagerie/log/162816-tritwise-operations-and-eating-crow (This might be a good reference)
+
+## Control Flow
+
+### if
+
+if is just a function an evaluates a condition and executes a code block if it's true. You can define similar functions yourself 
+
+```PythonScript
+/if <condition> [
+*<conditional statement if conditional is 2>*
+;; [
+*<conditional statement if conditional is 1>*
 ;;
+```
 
-/+ eight 1]:
+#### logical extension: named conditionals
 
-/!myif! if 0 [
-	/print "This will never execute"]:
+```PythonScript
+/=!myIf! [ if <condition> [
+*<conditional statement if conditional is 2>*
+;; [
+*<conditional statement if conditional is 1>*
+;;
 ;myif;
+```
 
-\\ Else statements take two arguments, the if's label, and a code block. This means that else statements can actually be located in any location after the if statement - if the if statement fails,
-\\ execution will jump to the else statement, and once that code block finishes, back to just after the if statement.
-\\ Else statements, like if statements, can include a label.
+### else
 
-/else myif [
-	/print "This, however, will be printed"]:
+```PythonScript
+/else <if conditional (named or otherwise)> [
+*<conditional statement if conditional is 0>*
 ;;
+```
 
-\\ PythonScript, being a linear language, lacks loops. Instead, it has jump statements. The ! operator is the jump operator.
+## labels
 
-/if /== eight 3] [ \\ Notice the == operator being used.
-	!myif \\ jump to line !myif! on line 50.
-;;
+labels for parts of your program (to be used with jumps)
 
-\\ That is the end of this pseudo-tutorial that I am calling a specification. Eventually I'll write up a proper specification.
+```PythonScript
+/!<label name>
+```
+
+## jump
+
+Loops are for the weak. In PythonScript all looping is done with jump statements.
+
+```PythonScript
+!<destination label>
 ```
