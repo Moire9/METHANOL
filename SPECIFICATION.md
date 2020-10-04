@@ -4,10 +4,6 @@ Values inside `<>` indicate values the user can manipulate as well as notation u
 
 `<identifier>...<<separator>>` indicates a variadic number of a parameter identified by `<identifier>` separated by the value in `<separator>`
 
-`<||>` OR
-
-`<if <condition>>` if `<condition>`
-
 `*<purpose>*` indicates a region in which any instructions may be given
 
 ## Number System
@@ -128,7 +124,7 @@ Logic in PythonScript is *all* done using ternary logic (& numbers) - "trits" wi
 
 ## Control Flow
 
-### if
+### If
 
 if is just a function an evaluates a condition and executes a code block if it's true. You can define similar functions yourself 
 
@@ -140,7 +136,9 @@ if is just a function an evaluates a condition and executes a code block if it's
 ;;
 ```
 
-#### logical extension: named conditionals
+#### Logical Extension: Named Conditionals
+
+[//]: # (Not needed?)
 
 ```PythonScript
 /=!myIf! [ if <condition> [
@@ -151,7 +149,7 @@ if is just a function an evaluates a condition and executes a code block if it's
 ;myif;
 ```
 
-### else
+### Else
 
 ```PythonScript
 /else <if conditional (named or otherwise)> [
@@ -159,7 +157,7 @@ if is just a function an evaluates a condition and executes a code block if it's
 ;;
 ```
 
-## labels
+### Labels
 
 labels for parts of your program (to be used with jumps)
 
@@ -167,7 +165,7 @@ labels for parts of your program (to be used with jumps)
 /!<label name>
 ```
 
-## jump
+### Jump
 
 Loops are for the weak. In PythonScript all looping is done with jump statements.
 
