@@ -130,9 +130,9 @@ if is just a function an evaluates a condition and executes a code block if it's
 
 ```PythonScript
 /if <condition> [
-*<conditional statement if conditional is 2>*
+*<conditional statement if conditional is +>*
 ;; [
-*<conditional statement if conditional is 1>*
+*<conditional statement if conditional is 0>*
 ;;
 ```
 
@@ -142,9 +142,9 @@ if is just a function an evaluates a condition and executes a code block if it's
 
 ```PythonScript
 /=!myIf! [ if <condition> [
-*<conditional statement if conditional is 2>*
+*<conditional statement if conditional is +>*
 ;; [
-*<conditional statement if conditional is 1>*
+*<conditional statement if conditional is 0>*
 ;;
 ;myif;
 ```
@@ -153,7 +153,7 @@ if is just a function an evaluates a condition and executes a code block if it's
 
 ```PythonScript
 /else <if conditional (named or otherwise)> [
-*<conditional statement if conditional is 0>*
+*<conditional statement if conditional is ->*
 ;;
 ```
 
