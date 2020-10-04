@@ -45,3 +45,41 @@ A Preceding slash before an execution block indicates that you want to return a 
 ```PythonScript
 //<function call> <args..< >> ]
 ```
+
+## Operators
+
+In PythonScript, all operators are functions, and so are called with the same notation as functions.
+
+### Required Operators
+
+#### Addition
+
+```PythonScript
+/+ <left> <right>
+```
+
+#### Subtraction
+
+```PythonScript
+/- <left> <right>
+```
+
+#### Multiplication
+
+```PythonScript
+/x <left> <right>
+```
+
+#### Division
+
+```PythonScript
+/\ <left> <right>
+```
+
+#### Exponentiation
+
+[//]: # (TODO: add "variadic" exponentiation operator to spec)
+
+```PythonScript
+/xx <left> <right>
+```
