@@ -8,29 +8,29 @@ Values inside `<>` indicate values the user can manipulate as well as notation u
 
 ## Number System
 
-PythonScript uses a base-3 number system. The symbols 3-9 are evaluated like any other symbols (meaning you can use them as definition names)
+METHANOL uses a base-3 number system. The symbols 3-9 are evaluated like any other symbols (meaning you can use them as definition names)
 
 **//TODO:** Negative numbers
 
-```PythonScript
+```METHANOL
 210 \\ == decimal 21
 ```
 
 ## Code Blocks
 
-The basic scoping unit of PythonScript, opened with `[` and closed with `;;`
+The basic scoping unit of METHANOL, opened with `[` and closed with `;;`
 
-```PythonScript
+```METHANOL
 [ *<inner code>* ;;
 ```
 
 ## Functions
 
-The basic subunit of code in PythonScript, as it's a functional language. You can think of it as a special case of the jump
+The basic subunit of code in METHANOL, as it's a functional language. You can think of it as a special case of the jump
 
 ### Declaration
 
-```PythonScript
+```METHANOL
 /!<function label>! [ <args...< >> [
 *<inner code>*
 ;<function name>; <||> ;; \\ used to end most recent block
@@ -40,7 +40,7 @@ The basic subunit of code in PythonScript, as it's a functional language. You ca
 
 functions are called using reverse polish notation
 
-```PythonScript
+```METHANOL
 /<function name> <args...< >> ]
 ```
 
@@ -48,7 +48,7 @@ functions are called using reverse polish notation
 
 A Preceding slash before an execution block indicates that you want to return a value. Using this outside of functions should result in a syntax error.
 
-```PythonScript
+```METHANOL
 //<function call> <args..< >> ]
 ```
 
@@ -56,7 +56,7 @@ A Preceding slash before an execution block indicates that you want to return a 
 
 assignment is a special function/operator that allows you to define symbols
 
-```PythonScript
+```METHANOL
 /= <identifier> <value>
 ```
 
@@ -64,31 +64,31 @@ as you can see, function definitions are just a special case of assignment
 
 ## Operators
 
-In PythonScript, all operators are functions, and so are called with the same notation as functions.
+In METHANOL, all operators are functions, and so are called with the same notation as functions.
 
 ### Required Operators
 
 #### Addition
 
-```PythonScript
+```METHANOL
 /+ <left> <right>
 ```
 
 #### Subtraction
 
-```PythonScript
+```METHANOL
 /- <left> <right>
 ```
 
 #### Multiplication
 
-```PythonScript
+```METHANOL
 /x <left> <right>
 ```
 
 #### Division
 
-```PythonScript
+```METHANOL
 /\ <left> <right>
 ```
 
@@ -96,17 +96,17 @@ In PythonScript, all operators are functions, and so are called with the same no
 
 [//]: # (TODO: add "variadic" exponentiation operator to spec)
 
-```PythonScript
+```METHANOL
 /xx <left> <right>
 ```
 
 ## Logic
 
-Logic in PythonScript is *all* done using ternary logic (& numbers) - "trits" with 3 states (hence the base-3 number system).
+Logic in METHANOL is *all* done using ternary logic (& numbers) - "trits" with 3 states (hence the base-3 number system).
 
 ### Equality
 
-```PythonScript
+```METHANOL
 /== <left> <right> \\ returns true if <left> == <right>
 ```
 
@@ -114,7 +114,7 @@ Logic in PythonScript is *all* done using ternary logic (& numbers) - "trits" wi
 
 [FIXME]: # (Might need to change based off how NOT is implemented)
 
-```PythonScript
+```METHANOL
 /!= <left> <right> \\ !(<left> == <right>) 
 ```
 
@@ -128,7 +128,7 @@ Logic in PythonScript is *all* done using ternary logic (& numbers) - "trits" wi
 
 if is just a function an evaluates a condition and executes a code block if it's true. You can define similar functions yourself 
 
-```PythonScript
+```METHANOL
 /if <condition> [
 *<conditional statement if conditional is 2>*
 ;; [
@@ -140,7 +140,7 @@ if is just a function an evaluates a condition and executes a code block if it's
 
 [//]: # (Not needed?)
 
-```PythonScript
+```METHANOL
 /=!myIf! [ if <condition> [
 *<conditional statement if conditional is 2>*
 ;; [
@@ -151,7 +151,7 @@ if is just a function an evaluates a condition and executes a code block if it's
 
 ### Else
 
-```PythonScript
+```METHANOL
 /else <if conditional (named or otherwise)> [
 *<conditional statement if conditional is 0>*
 ;;
@@ -161,14 +161,14 @@ if is just a function an evaluates a condition and executes a code block if it's
 
 labels for parts of your program (to be used with jumps)
 
-```PythonScript
+```METHANOL
 /!<label name>
 ```
 
 ### Jump
 
-Loops are for the weak. In PythonScript all looping is done with jump statements.
+Loops are for the weak. In METHANOL all looping is done with jump statements.
 
-```PythonScript
+```METHANOL
 !<destination label>
 ```

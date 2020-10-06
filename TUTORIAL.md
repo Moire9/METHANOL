@@ -1,7 +1,7 @@
-This is an informal specification for PythonScript, a formal one will follow later. 
+This is an informal specification for METHANOL, a formal one will follow later. 
 
 ##Rundown of basic features
-PythonScript is loosely based off of Python. PythonScript does not have classes, fields, or namespaces. Example program:
+METHANOL is loosely based off of Python. METHANOL does not have classes, fields, or namespaces. Example program:
 ```
 \\ Double backslash indicates a comment.
 
@@ -14,16 +14,16 @@ PythonScript is loosely based off of Python. PythonScript does not have classes,
 
 /main 0 "h"]: \\ Execute the main function, passing parameters 0 and "h".
 
-\\ PythonScript has a few operators. Note that PythonScript uses polish notation for all operators, with a closing bracket to indicate the end of that function.
+\\ METHANOL has a few operators. Note that METHANOL uses polish notation for all operators, with a closing bracket to indicate the end of that function.
 
 /print /+ 22 21]]: \\ Add 22 and 21 and print them.
 
-\\ PythonScript's operators are: + for addition, - for subtraction, x for multiplication, and \ for division. You may have noticed that x is used for multiplication.
+\\ METHANOL's operators are: + for addition, - for subtraction, x for multiplication, and \ for division. You may have noticed that x is used for multiplication.
 \\ Being an operator, x cannot be used in identifiers. You will have to find another alternative.
 
 /= eight 1]: \\ Assign 1 to the variable eight
 
-\\ PythonScript supports literal reassignment, making it an extremely flexible language. For example,
+\\ METHANOL supports literal reassignment, making it an extremely flexible language. For example,
 
 /= 12 22]:
 
@@ -31,16 +31,16 @@ PythonScript is loosely based off of Python. PythonScript does not have classes,
 
 /print + 2 10]]: \\ This will print 22
 
-\\ I should also mention that PythonScript uses the ternary number & logic systems. Tritwise and logical operators can be applied to all objects with support for them.
+\\ I should also mention that METHANOL uses the ternary number & logic systems. Tritwise and logical operators can be applied to all objects with support for them.
 \\ Additionally, users can implement their own tritwise operators. Since no distinction is made between operators and functions, making one is quite simple.
-\\ Note that PythonScript won't stop you from implementing functions or variables that override keywords (such as / and [ and ]), however doing so is likely a bad idea.
+\\ Note that METHANOL won't stop you from implementing functions or variables that override keywords (such as / and [ and ]), however doing so is likely a bad idea.
 
 /=!$! [ one two [ \\ declare a function $ that returns the the sum of the two values halved.
 
 	//\ /+ one two] 2]: \\ a preceding slash indicates that the value will be returned from the function. There are two slashes here since it is returning the output of a function.
-	\\ Note that in PythonScript since everything is technically a function, order of operations is ignored and evaluated left to right.
+	\\ Note that in METHANOL since everything is technically a function, order of operations is ignored and evaluated left to right.
 ;; \\ This has the same effect as ;$;
-\\ PythonScript has relatively few restrictions on what things can be named
+\\ METHANOL has relatively few restrictions on what things can be named
 \\ Because of literal reassignment, you can even have variables or functions with spaces in their names (as long as they are wrapped with quotes)
 
 
@@ -64,7 +64,7 @@ PythonScript is loosely based off of Python. PythonScript does not have classes,
 	/print "This, however, will be printed"]:
 ;;
 
-\\ PythonScript, being a linear language, lacks loops. Instead, it has jump statements. The ! operator is the jump operator.
+\\ METHANOL, being a linear language, lacks loops. Instead, it has jump statements. The ! operator is the jump operator.
 
 /if /== eight 3] [ \\ Notice the == operator being used.
 	!myif \\ jump to line !myif! on line 50.
