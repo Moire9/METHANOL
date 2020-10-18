@@ -1,74 +1,59 @@
-This is an informal specification for PythonScript, a formal one will follow later. 
-
-##Rundown of basic features
-PythonScript is loosely based off of Python. PythonScript does not have classes, fields, or namespaces. Example program:
+METHANOL is a functional programming language. METHANOL has no classes, as those would be incompatible with METHANOL's function-based programming. Furthermore, METHONAL lacks namespaces. Because of the lack of functions, only primitive types are allowed - integers, floating-point numbers, Strings, and lists. Data is stored by using functions to read and write to the stack. All of METHANOL is built upon the `/` operator, which serves multiple functions (note that in METHANOL the terms function, method, and operator can be used interchangeably). It can be used to execute functions and return data from those methods.
 ```
-\\ Double backslash indicates a comment.
+main 1 [ \\ All code must be inside the main function. This function takes exactly one argument, which is a string of any command line args passed to it
 
-/=!main! [ foo bar [ \\ Declare a new function "main" that accepts two variables, foo and bar. The [ indicates the beginning of variables and / the end. The ! creates a label, don't worry about that right now.
+	\\ Push a value onto the stack.
 
-  /print "Hello, World!"]: \\ A slash indicates the beginning of a function execution. A colon indicates the end of an instruction
-  \\ Technically / is an operator that takes the function's name as the first argument, and the function's arguements as the following arguments.
+	/ = 1;
 
-;main; \\ The end of a code block is denoted with the block's name or label surrounded by semicolons. Leaving out the label will end the topmost code block.
+	\\ Read from the top of the stack
 
-/main 0 "h"]: \\ Execute the main function, passing parameters 0 and "h".
+	/ < 0; \\ This is the stack number, not a location
+	\\ The value is ignored here since it doesn't go anywhere
 
-\\ PythonScript has a few operators. Note that PythonScript uses polish notation for all operators, with a closing bracket to indicate the end of that function.
+	\\ Pop x values, also reading them
 
-/print /+ 22 21]]: \\ Add 22 and 21 and print them.
+	/ _ 1;
 
-\\ PythonScript's operators are: + for addition, - for subtraction, x for multiplication, and \ for division. You may have noticed that x is used for multiplication.
-\\ Being an operator, x cannot be used in identifiers. You will have to find another alternative.
-
-/= eight 1]: \\ Assign 1 to the variable eight
-
-\\ PythonScript supports literal reassignment, making it an extremely flexible language. For example,
-
-/= 12 22]:
-
-\\ You may have also noticed that the assignment operator is also used to create functions.
-
-/print + 2 10]]: \\ This will print 22
-
-\\ I should also mention that PythonScript uses the ternary number & logic systems. Tritwise and logical operators can be applied to all objects with support for them.
-\\ Additionally, users can implement their own tritwise operators. Since no distinction is made between operators and functions, making one is quite simple.
-\\ Note that PythonScript won't stop you from implementing functions or variables that override keywords (such as / and [ and ]), however doing so is likely a bad idea.
-
-/=!$! [ one two [ \\ declare a function $ that returns the the sum of the two values halved.
-
-	//\ /+ one two] 2]: \\ a preceding slash indicates that the value will be returned from the function. There are two slashes here since it is returning the output of a function.
-	\\ Note that in PythonScript since everything is technically a function, order of operations is ignored and evaluated left to right.
-;; \\ This has the same effect as ;$;
-\\ PythonScript has relatively few restrictions on what things can be named
-\\ Because of literal reassignment, you can even have variables or functions with spaces in their names (as long as they are wrapped with quotes)
+	\\ Built-in function
+	/ print "Hello, World!";
 
 
-\\ Let's talk about control flow. Code blocks start with a [ and end with a ;[block name];
+	\\ Branching is achieved using special branching functions.
 
-/if 1 [ \\ if is just a function that takes two arguments, a boolean expression and a code block. optionally a label can be defined, as we will see below
-	/print "This will always execute"]:
-;;
+	/ = / if / == 1 1; [
+		/ print "If this does not print, there is probably something wrong with your compiler.";
+	];;
+	\\ The if function returns a special reference that can be used to create else statements. 
+	/ else / _ 1; [
+		/ print "1 != 1";
+	];
 
-/+ eight 1]:
+	/ 0; \\ Exit code 0
+];
 
-/!myif! if 0 [
-	/print "This will never execute"]:
-;myif;
+\\ Create a function
+\\ 0 is the number of arguments
+return1 0 [ \\ Code blocks are surrounded with []
+	/ 1; \\ / returns it's argument
+]; \\ The semicolon does not mean the end of a statement, but rather the end of arguments to a function. In most cases these are analagous.
 
-\\ Else statements take two arguments, the if's label, and a code block. This means that else statements can actually be located in any location after the if statement - if the if statement fails,
-\\ execution will jump to the else statement, and once that code block finishes, back to just after the if statement.
-\\ Else statements, like if statements, can include a label.
+\\ Each function has it's own stack, which is pre-populated with the passed parameters. 
+identity 1 [
+	/ / < 1;; \\ Return the first value on the second stack
+];
 
-/else myif [
-	/print "This, however, will be printed"]:
-;;
 
-\\ PythonScript, being a linear language, lacks loops. Instead, it has jump statements. The ! operator is the jump operator.
-
-/if /== eight 3] [ \\ Notice the == operator being used.
-	!myif \\ jump to line !myif! on line 50.
-;;
-
-\\ That is the end of this pseudo-tutorial that I am calling a specification. Eventually I'll write up a proper specification.
 ```
+
+METHANOL uses Polish notation for functions, including operators (which are just special functions).
+
+```
+/ print / + 1 4;; \\ Prints 5
+```
+
+`/` syntax:
+* `/ <value>;` - return `<value>` from your current function (like the `return` keyword in other languages)
+* `/ <function> <args>;` - execute the function named `<function>` passing it arguments `<args>`
+
+METHANOL has very weak restrictions on naming. A function can be named nearly anything, as long as the name does not contain whitespace. You can even name functions things like `8` and `+`, however this will probably not end well. You can even overwrite the `/` function, but doing this would be an inherently terrible idea. Remember however, that multiple functions with the same name can exist as long as their number of arumgnets differ. This means that you can technically create your own namespaces by naming functions that have periods in their names.
